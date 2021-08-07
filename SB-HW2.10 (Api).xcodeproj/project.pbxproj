@@ -13,6 +13,8 @@
 		0693BCFE26BD4F7E0070A8F0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0693BCFC26BD4F7E0070A8F0 /* Main.storyboard */; };
 		0693BD0026BD4F820070A8F0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0693BCFF26BD4F820070A8F0 /* Assets.xcassets */; };
 		0693BD0326BD4F820070A8F0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0693BD0126BD4F820070A8F0 /* LaunchScreen.storyboard */; };
+		0693BD0F26BD569A0070A8F0 /* Coordinate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0693BD0E26BD569A0070A8F0 /* Coordinate.swift */; };
+		0693BD1126BD589E0070A8F0 /* Weather.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0693BD1026BD589E0070A8F0 /* Weather.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +26,8 @@
 		0693BCFF26BD4F820070A8F0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0693BD0226BD4F820070A8F0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0693BD0426BD4F820070A8F0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0693BD0E26BD569A0070A8F0 /* Coordinate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinate.swift; sourceTree = "<group>"; };
+		0693BD1026BD589E0070A8F0 /* Weather.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Weather.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,15 +60,49 @@
 		0693BCF526BD4F7E0070A8F0 /* SB-HW2.10 (Api) */ = {
 			isa = PBXGroup;
 			children = (
-				0693BCF626BD4F7E0070A8F0 /* AppDelegate.swift */,
-				0693BCF826BD4F7E0070A8F0 /* SceneDelegate.swift */,
-				0693BCFA26BD4F7E0070A8F0 /* ViewController.swift */,
-				0693BCFC26BD4F7E0070A8F0 /* Main.storyboard */,
+				0693BD0A26BD56540070A8F0 /* Models */,
+				0693BD0C26BD566D0070A8F0 /* Configs */,
+				0693BD0B26BD565D0070A8F0 /* ViewControllers */,
+				0693BD0D26BD56840070A8F0 /* Storyboards */,
 				0693BCFF26BD4F820070A8F0 /* Assets.xcassets */,
-				0693BD0126BD4F820070A8F0 /* LaunchScreen.storyboard */,
-				0693BD0426BD4F820070A8F0 /* Info.plist */,
 			);
 			path = "SB-HW2.10 (Api)";
+			sourceTree = "<group>";
+		};
+		0693BD0A26BD56540070A8F0 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				0693BD0E26BD569A0070A8F0 /* Coordinate.swift */,
+				0693BD1026BD589E0070A8F0 /* Weather.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		0693BD0B26BD565D0070A8F0 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				0693BCFA26BD4F7E0070A8F0 /* ViewController.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		0693BD0C26BD566D0070A8F0 /* Configs */ = {
+			isa = PBXGroup;
+			children = (
+				0693BCF626BD4F7E0070A8F0 /* AppDelegate.swift */,
+				0693BCF826BD4F7E0070A8F0 /* SceneDelegate.swift */,
+				0693BD0426BD4F820070A8F0 /* Info.plist */,
+			);
+			path = Configs;
+			sourceTree = "<group>";
+		};
+		0693BD0D26BD56840070A8F0 /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				0693BCFC26BD4F7E0070A8F0 /* Main.storyboard */,
+				0693BD0126BD4F820070A8F0 /* LaunchScreen.storyboard */,
+			);
+			path = Storyboards;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -140,6 +178,8 @@
 				0693BCFB26BD4F7E0070A8F0 /* ViewController.swift in Sources */,
 				0693BCF726BD4F7E0070A8F0 /* AppDelegate.swift in Sources */,
 				0693BCF926BD4F7E0070A8F0 /* SceneDelegate.swift in Sources */,
+				0693BD0F26BD569A0070A8F0 /* Coordinate.swift in Sources */,
+				0693BD1126BD589E0070A8F0 /* Weather.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -288,7 +328,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = RWWSRV5W4R;
-				INFOPLIST_FILE = "SB-HW2.10 (Api)/Info.plist";
+				INFOPLIST_FILE = "SB-HW2.10 (Api)/Configs/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -307,7 +347,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = RWWSRV5W4R;
-				INFOPLIST_FILE = "SB-HW2.10 (Api)/Info.plist";
+				INFOPLIST_FILE = "SB-HW2.10 (Api)/Configs/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
