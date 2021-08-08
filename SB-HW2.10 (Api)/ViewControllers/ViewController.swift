@@ -31,7 +31,7 @@ class ViewController: UIViewController {
         activityIndicator.hidesWhenStopped = true
         location()
         network()
-
+        
     }
 }
 
@@ -78,30 +78,71 @@ extension ViewController {
                     self.feelLable.text = "Ощущается как \(weather.fact?.feels_like ?? 0)°"
                     self.speedWindLabel.text = "Скорость ветра \(weather.fact?.wind_speed ?? 0) м/с"
                     self.pressureLabel.text = "Давление: \(weather.fact?.pressure_mm ?? 0) мм.рт.ст"
-                    self.icon = weather.fact?.icon ?? "ovc"
                 }
                 
-                self.fetchImage()
+                self.getIcon(condition: Icon(rawValue: weather.fact?.condition ?? "clear") ?? .clear)
+                
             } catch let error {
                 print(error)
             }
         }.resume()
     }
     
-    private func fetchImage() {
-        let iconUrl = "https://yastatic.net/weather/i/icons/funky/dark/ovc.svg"
-        print(iconUrl)
-        guard let imageUrl = URL(string: iconUrl ) else { return }
+    private func getIcon(condition: Icon) {
+        switch condition {
         
-        URLSession.shared.dataTask(with: imageUrl) {(data, response, error) in
-            guard let data = data else {
-                return
-            }
+        case .clear:
             DispatchQueue.main.async {
-                self.iconImage.image = UIImage(data: data)
-                self.activityIndicator.stopAnimating()
+                self.iconImage.image = UIImage(systemName: "sun.min")
             }
-        }.resume()
+            
+        case .cloudy:
+            DispatchQueue.main.async {
+                self.iconImage.image = UIImage(systemName: "cloud.sun")
+            }
+        case .overcast:
+            DispatchQueue.main.async {
+                self.iconImage.image = UIImage(systemName: "cloud")
+            }
+            
+        case .drizzle:
+            DispatchQueue.main.async {
+                self.iconImage.image = UIImage(systemName: "cloud.drizzle")
+            }
+            
+        case .rain:
+            DispatchQueue.main.async {
+                self.iconImage.image = UIImage(systemName: "cloud.rain")
+            }
+            
+        case .showers:
+            DispatchQueue.main.async {
+                self.iconImage.image = UIImage(systemName: "cloud.heavyrain")
+            }
+            
+        case .snow:
+            DispatchQueue.main.async {
+                self.iconImage.image = UIImage(systemName: "cloud.snow")
+            }
+            
+        case .hail:
+            DispatchQueue.main.async {
+                self.iconImage.image = UIImage(systemName: "cloud.hail")
+            }
+            
+        case .thunderstorm:
+            DispatchQueue.main.async {
+                self.iconImage.image = UIImage(systemName: "cloud.bolt.rain")
+            }
+            
+        }
+        
+        DispatchQueue.main.async {
+            self.activityIndicator.stopAnimating()
+        }
+        
     }
 }
+
+
 

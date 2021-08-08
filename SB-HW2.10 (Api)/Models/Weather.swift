@@ -25,6 +25,19 @@ struct Fact: Decodable {
     let temp: Int?
     let feels_like: Int?
     let icon: String?
+    let condition: String?
     let wind_speed: Double?
     let pressure_mm: Int?
+}
+
+enum Icon: String {
+    case clear
+    case cloudy
+    case overcast
+    case drizzle
+    case rain
+    case showers
+    case snow
+    case hail
+    case thunderstorm
 }
