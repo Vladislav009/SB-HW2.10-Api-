@@ -18,11 +18,9 @@ class ViewController: UIViewController {
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     let locationManager = CLLocationManager()
-    let group = DispatchGroup()
     
     private var cord = Coordinate.shared
     private let apiKey = "d60aa43f-8443-4e75-afa1-d4e07566b699"
-    private var icon = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,7 +29,6 @@ class ViewController: UIViewController {
         activityIndicator.hidesWhenStopped = true
         location()
         network()
-        
     }
 }
 
@@ -49,6 +46,7 @@ extension ViewController: CLLocationManagerDelegate {
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         guard let locValue: CLLocationCoordinate2D = manager.location?.coordinate else { return }
+        print(locValue)
         cord.latitude = locValue.latitude
         cord.longtitude = locValue.longitude
     }
@@ -89,58 +87,31 @@ extension ViewController {
     }
     
     private func getIcon(condition: Icon) {
-        switch condition {
-        
-        case .clear:
-            DispatchQueue.main.async {
+        DispatchQueue.main.async {
+            switch condition {
+            
+            case .clear:
                 self.iconImage.image = UIImage(systemName: "sun.min")
-            }
-            
-        case .cloudy:
-            DispatchQueue.main.async {
+            case .cloudy:
                 self.iconImage.image = UIImage(systemName: "cloud.sun")
-            }
-        case .overcast:
-            DispatchQueue.main.async {
+            case .overcast:
                 self.iconImage.image = UIImage(systemName: "cloud")
-            }
-            
-        case .drizzle:
-            DispatchQueue.main.async {
+            case .drizzle:
                 self.iconImage.image = UIImage(systemName: "cloud.drizzle")
-            }
-            
-        case .rain:
-            DispatchQueue.main.async {
+            case .rain:
                 self.iconImage.image = UIImage(systemName: "cloud.rain")
-            }
-            
-        case .showers:
-            DispatchQueue.main.async {
+            case .showers:
                 self.iconImage.image = UIImage(systemName: "cloud.heavyrain")
-            }
-            
-        case .snow:
-            DispatchQueue.main.async {
+            case .snow:
                 self.iconImage.image = UIImage(systemName: "cloud.snow")
-            }
-            
-        case .hail:
-            DispatchQueue.main.async {
+            case .hail:
                 self.iconImage.image = UIImage(systemName: "cloud.hail")
-            }
-            
-        case .thunderstorm:
-            DispatchQueue.main.async {
+            case .thunderstorm:
                 self.iconImage.image = UIImage(systemName: "cloud.bolt.rain")
             }
             
-        }
-        
-        DispatchQueue.main.async {
             self.activityIndicator.stopAnimating()
         }
-        
     }
 }
 

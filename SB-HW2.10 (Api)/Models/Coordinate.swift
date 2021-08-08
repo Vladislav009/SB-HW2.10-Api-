@@ -12,7 +12,6 @@ class Coordinate {
     
     var longtitude = 0.0
     var latitude = 0.0
-    var icon = ""
     
     private init(){}
 }
