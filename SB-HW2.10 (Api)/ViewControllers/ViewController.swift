@@ -59,12 +59,11 @@ extension ViewController {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         guard let locValue: CLLocationCoordinate2D = manager.location?.coordinate else { return }
         print(locValue)
+
         networkManager.latitude = locValue.latitude
         networkManager.longtitude = locValue.longitude
         
         fetchData()
-        
-        
     }
     
 }
