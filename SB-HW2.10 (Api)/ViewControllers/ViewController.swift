@@ -28,7 +28,7 @@ class ViewController: UIViewController {
         activityIndicator.startAnimating()
         activityIndicator.hidesWhenStopped = true
         location()
-        network()
+        
     }
 }
 
@@ -49,6 +49,8 @@ extension ViewController: CLLocationManagerDelegate {
         print(locValue)
         cord.latitude = locValue.latitude
         cord.longtitude = locValue.longitude
+        
+        network()
     }
     
 }
