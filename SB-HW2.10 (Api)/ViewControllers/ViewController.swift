@@ -20,9 +20,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     let locationManager = CLLocationManager()
     let networkManager = NetworkManager.share
     
-    
-    private let apiKey = "d60aa43f-8443-4e75-afa1-d4e07566b699"
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -53,7 +50,9 @@ extension ViewController {
         networkManager.latitude = locValue.latitude
         networkManager.longtitude = locValue.longitude
         
-        networkManager.fetchData()
+        fetchData()
+        
+        
     }
     
 }
@@ -62,37 +61,17 @@ extension ViewController {
 
 extension ViewController {
     
-    func network() {
-//        guard let url = URL(string: "https://api.weather.yandex.ru/v2/forecast?lat=\(Coordinate.latitude)&lon=\(Coordinate.longtitude)") else { return }
-//
-//
-//        var request = URLRequest(url: url)
-//        request.httpMethod = "GET"
-//        request.setValue(apiKey, forHTTPHeaderField: "X-Yandex-API-Key")
-//
-//        URLSession.shared.dataTask(with: request) { (data, response, error) in
-//            guard let data = data else {
-//                print(error?.localizedDescription ?? "No error descriprion")
-//                return
-//            }
-//            do {
-//                let weather = try JSONDecoder().decode(Weather.self, from: data)
-//                DispatchQueue.main.sync {
-//                    self.temlLabel.text = "\(weather.fact?.temp ?? 0)°"
-//                    self.feelLable.text = "Ощущается как \(weather.fact?.feels_like ?? 0)°"
-//                    self.speedWindLabel.text = "Скорость ветра \(weather.fact?.wind_speed ?? 0) м/с"
-//                    self.pressureLabel.text = "Давление: \(weather.fact?.pressure_mm ?? 0) мм.рт.ст"
-//                }
-//
-//                self.getIcon(condition: Icon(rawValue: weather.fact?.condition ?? "clear") ?? .clear)
-//
-//            } catch let error {
-//                print(error)
-//            }
-//        }.resume()
-         
-
-        
+    private func fetchData() {
+        networkManager.fetchData() {
+            currentWeather in
+            self.temlLabel.text = "\(currentWeather.fact.temp )°"
+            self.feelLable.text = "Ощущается как \(currentWeather.fact.feelsLike)°"
+            self.speedWindLabel.text = "Скорость ветра \(currentWeather.fact.windSpeed) м/с"
+            self.pressureLabel.text = "Давление: \(currentWeather.fact.pressureMm) мм.рт.ст"
+            self.getIcon(condition: Icon(rawValue: currentWeather.fact.condition.rawValue) ?? .clear)
+            
+            self.title = currentWeather.geoObject.province?.name
+        }
     }
     
     private func getIcon(condition: Icon) {
@@ -122,13 +101,6 @@ extension ViewController {
             self.activityIndicator.stopAnimating()
         }
     }
-}
-
-// MARK: - Structure
-
-struct Coordinate {
-    static var longtitude = 0.0
-    static var latitude = 0.0
 }
 
 

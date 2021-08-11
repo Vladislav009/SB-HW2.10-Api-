@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		066BEF4326C2F29C002A4190 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 066BEF4226C2F29C002A4190 /* NetworkManager.swift */; };
+		0678AF8026C42F58003C4719 /* Api.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0678AF7F26C42F58003C4719 /* Api.swift */; };
+		0678AF8426C45383003C4719 /* DetailWeatherTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0678AF8326C45383003C4719 /* DetailWeatherTableViewController.swift */; };
+		0678AF8726C453D0003C4719 /* DetailWeatherTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0678AF8626C453D0003C4719 /* DetailWeatherTableViewCell.swift */; };
 		0693BCF726BD4F7E0070A8F0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0693BCF626BD4F7E0070A8F0 /* AppDelegate.swift */; };
 		0693BCF926BD4F7E0070A8F0 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0693BCF826BD4F7E0070A8F0 /* SceneDelegate.swift */; };
 		0693BCFB26BD4F7E0070A8F0 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0693BCFA26BD4F7E0070A8F0 /* ViewController.swift */; };
@@ -20,6 +23,9 @@
 
 /* Begin PBXFileReference section */
 		066BEF4226C2F29C002A4190 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		0678AF7F26C42F58003C4719 /* Api.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Api.swift; sourceTree = "<group>"; };
+		0678AF8326C45383003C4719 /* DetailWeatherTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailWeatherTableViewController.swift; sourceTree = "<group>"; };
+		0678AF8626C453D0003C4719 /* DetailWeatherTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailWeatherTableViewCell.swift; sourceTree = "<group>"; };
 		0693BCF326BD4F7E0070A8F0 /* SB-HW2.10 (Api).app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "SB-HW2.10 (Api).app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0693BCF626BD4F7E0070A8F0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0693BCF826BD4F7E0070A8F0 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -50,8 +56,17 @@
 			isa = PBXGroup;
 			children = (
 				066BEF4226C2F29C002A4190 /* NetworkManager.swift */,
+				0678AF7F26C42F58003C4719 /* Api.swift */,
 			);
 			path = Services;
+			sourceTree = "<group>";
+		};
+		0678AF8526C453BC003C4719 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				0678AF8626C453D0003C4719 /* DetailWeatherTableViewCell.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		0693BCEA26BD4F7D0070A8F0 = {
@@ -75,6 +90,7 @@
 		0693BCF526BD4F7E0070A8F0 /* SB-HW2.10 (Api) */ = {
 			isa = PBXGroup;
 			children = (
+				0678AF8526C453BC003C4719 /* View */,
 				066BEF4126C2F284002A4190 /* Services */,
 				0693BD0A26BD56540070A8F0 /* Models */,
 				0693BD0C26BD566D0070A8F0 /* Configs */,
@@ -97,6 +113,7 @@
 			isa = PBXGroup;
 			children = (
 				0693BCFA26BD4F7E0070A8F0 /* ViewController.swift */,
+				0678AF8326C45383003C4719 /* DetailWeatherTableViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -251,10 +268,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0678AF8026C42F58003C4719 /* Api.swift in Sources */,
 				066BEF4326C2F29C002A4190 /* NetworkManager.swift in Sources */,
+				0678AF8726C453D0003C4719 /* DetailWeatherTableViewCell.swift in Sources */,
 				0693BCFB26BD4F7E0070A8F0 /* ViewController.swift in Sources */,
 				0693BCF726BD4F7E0070A8F0 /* AppDelegate.swift in Sources */,
 				0693BCF926BD4F7E0070A8F0 /* SceneDelegate.swift in Sources */,
+				0678AF8426C45383003C4719 /* DetailWeatherTableViewController.swift in Sources */,
 				0693BD1126BD589E0070A8F0 /* Weather.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
