@@ -13,10 +13,6 @@ class DetailWeatherTableViewCell: UITableViewCell {
     @IBOutlet weak var sunriseLabel: UILabel!
     @IBOutlet weak var sunsetLabel: UILabel!
     
-    var date = ""
-    var sunrise = ""
-    var sunset = ""
-    
     
     // MARK: - Public methods
     func configure(with forecast: Forecast?) {
