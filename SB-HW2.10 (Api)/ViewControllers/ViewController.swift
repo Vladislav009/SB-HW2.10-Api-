@@ -20,6 +20,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     let locationManager = CLLocationManager()
     let networkManager = NetworkManager.share
     
+    var forecast: [Forecast] = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -27,6 +29,16 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         activityIndicator.hidesWhenStopped = true
         
         location()
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let detailWeatherTVC = segue.destination as? DetailWeatherTableViewController else { return }
+        
+        detailWeatherTVC.forecasts = forecast
+    }
+    
+    @IBAction func showDetailAction(_ sender: Any) {
+        performSegue(withIdentifier: "showDetail", sender: nil)
     }
 }
 
@@ -69,6 +81,7 @@ extension ViewController {
             self.speedWindLabel.text = "Скорость ветра \(currentWeather.fact.windSpeed) м/с"
             self.pressureLabel.text = "Давление: \(currentWeather.fact.pressureMm) мм.рт.ст"
             self.getIcon(condition: Icon(rawValue: currentWeather.fact.condition.rawValue) ?? .clear)
+            self.forecast = currentWeather.forecasts
             
             self.title = currentWeather.geoObject.province?.name
         }

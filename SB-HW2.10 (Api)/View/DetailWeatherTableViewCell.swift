@@ -13,15 +13,16 @@ class DetailWeatherTableViewCell: UITableViewCell {
     @IBOutlet weak var sunriseLabel: UILabel!
     @IBOutlet weak var sunsetLabel: UILabel!
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
+    var date = ""
+    var sunrise = ""
+    var sunset = ""
+    
+    
+    // MARK: - Public methods
+    func configure(with forecast: Forecast?) {
+        dateLabel.text = forecast?.date
+        sunriseLabel.text = forecast?.sunrise
+        sunsetLabel.text = forecast?.sunset
     }
 
 }

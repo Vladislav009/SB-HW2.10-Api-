@@ -79,7 +79,8 @@
                     <navigationItem key="navigationItem" id="O0j-Ll-zxf">
                         <barButtonItem key="rightBarButtonItem" title="Подробно" id="b2D-kq-dVP">
                             <connections>
-                                <segue destination="ALc-j4-x63" kind="show" id="Szd-iL-f7u"/>
+                                <action selector="showDetailAction:" destination="BYZ-38-t0r" id="jb7-wH-qOV"/>
+                                <segue destination="ALc-j4-x63" kind="show" identifier="showDetail" id="Szd-iL-f7u"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -113,7 +114,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" axis="vertical" alignment="top" spacing="9" translatesAutoresizingMaskIntoConstraints="NO" id="kUc-SX-rVy">
-                                            <rect key="frame" x="20" y="8" width="91" height="79.5"/>
+                                            <rect key="frame" x="33" y="8" width="91" height="79.5"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2021-08-10" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hht-vP-4qk">
                                                     <rect key="frame" x="0.0" y="0.0" width="91" height="20.5"/>
