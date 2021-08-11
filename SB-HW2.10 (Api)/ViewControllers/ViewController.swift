@@ -8,7 +8,7 @@
 import UIKit
 import CoreLocation
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, CLLocationManagerDelegate {
     
     @IBOutlet weak var temlLabel: UILabel!
     @IBOutlet weak var feelLable: UILabel!
@@ -18,22 +18,33 @@ class ViewController: UIViewController {
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     let locationManager = CLLocationManager()
+    let networkManager = NetworkManager.share
     
-    private var cord = Coordinate.shared
-    private let apiKey = "d60aa43f-8443-4e75-afa1-d4e07566b699"
+    var forecast: [Forecast] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         activityIndicator.startAnimating()
         activityIndicator.hidesWhenStopped = true
-        location()
         
+        location()
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let detailWeatherTVC = segue.destination as? DetailWeatherTableViewController else { return }
+        
+        detailWeatherTVC.forecasts = forecast
+    }
+    
+    @IBAction func showDetailAction(_ sender: Any) {
+        performSegue(withIdentifier: "showDetail", sender: nil)
     }
 }
 
 // MARK: - Get location  user
-extension ViewController: CLLocationManagerDelegate {
+
+extension ViewController {
     private func location(){
         locationManager.requestAlwaysAuthorization()
         locationManager.requestWhenInUseAuthorization()
@@ -42,15 +53,17 @@ extension ViewController: CLLocationManagerDelegate {
             locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
             locationManager.startUpdatingLocation()
         }
+        
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         guard let locValue: CLLocationCoordinate2D = manager.location?.coordinate else { return }
         print(locValue)
-        cord.latitude = locValue.latitude
-        cord.longtitude = locValue.longitude
+
+        networkManager.latitude = locValue.latitude
+        networkManager.longtitude = locValue.longitude
         
-        network()
+        fetchData()
     }
     
 }
@@ -58,34 +71,19 @@ extension ViewController: CLLocationManagerDelegate {
 // MARK: - API handler
 
 extension ViewController {
-    func network() {
-        guard let url = URL(string: "https://api.weather.yandex.ru/v2/forecast?lat=\(cord.latitude)&lon=\(cord.longtitude)") else { return }
-        
-        
-        var request = URLRequest(url: url)
-        request.httpMethod = "GET"
-        request.setValue(apiKey, forHTTPHeaderField: "X-Yandex-API-Key")
-        
-        URLSession.shared.dataTask(with: request) { (data, response, error) in
-            guard let data = data else {
-                print(error?.localizedDescription ?? "No error descriprion")
-                return
-            }
-            do {
-                let weather = try JSONDecoder().decode(Weather.self, from: data)
-                DispatchQueue.main.sync {
-                    self.temlLabel.text = "\(weather.fact?.temp ?? 0)°"
-                    self.feelLable.text = "Ощущается как \(weather.fact?.feels_like ?? 0)°"
-                    self.speedWindLabel.text = "Скорость ветра \(weather.fact?.wind_speed ?? 0) м/с"
-                    self.pressureLabel.text = "Давление: \(weather.fact?.pressure_mm ?? 0) мм.рт.ст"
-                }
-                
-                self.getIcon(condition: Icon(rawValue: weather.fact?.condition ?? "clear") ?? .clear)
-                
-            } catch let error {
-                print(error)
-            }
-        }.resume()
+    
+    private func fetchData() {
+        networkManager.fetchData() {
+            currentWeather in
+            self.temlLabel.text = "\(currentWeather.fact.temp )°"
+            self.feelLable.text = "Ощущается как \(currentWeather.fact.feelsLike)°"
+            self.speedWindLabel.text = "Скорость ветра \(currentWeather.fact.windSpeed) м/с"
+            self.pressureLabel.text = "Давление: \(currentWeather.fact.pressureMm) мм.рт.ст"
+            self.getIcon(condition: Icon(rawValue: currentWeather.fact.condition.rawValue) ?? .clear)
+            self.forecast = currentWeather.forecasts
+            
+            self.title = currentWeather.geoObject.province?.name
+        }
     }
     
     private func getIcon(condition: Icon) {
